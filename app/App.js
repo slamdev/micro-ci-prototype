@@ -1,128 +1,52 @@
 import React from "react";
+import Header from "./Header.js";
+import Navigation from "./Navigation.js";
 
 export default class App extends React.Component {
     render() {
+        let jobs = [
+            {
+                id: 1,
+                active: true,
+                status: 'success',
+                name: 'Build and test',
+                buildNumber: '4',
+                buildDuration: '6 min 14 sec',
+                buildFinished: '5 days ago'
+            },
+            {
+                id: 2,
+                active: false,
+                status: 'failed',
+                name: 'Deploy',
+                buildNumber: '15',
+                buildDuration: '1 min 5 sec',
+                buildFinished: '7 days ago'
+            },
+            {
+                id: 3,
+                active: false,
+                status: 'success',
+                name: 'QA Build',
+                buildNumber: '1',
+                buildDuration: '15 min 2 sec',
+                buildFinished: '1 day ago'
+            },
+            {
+                id: 4,
+                active: false,
+                status: 'failed',
+                name: 'Prod Deploy',
+                buildNumber: '7',
+                buildDuration: '3 min 59 sec',
+                buildFinished: '7 days ago'
+            }
+        ];
         return (
             <div
                 className="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs mdl-layout--fixed-drawer">
-                <header className="mdl-layout__header">
-                    <div className="mdl-layout__header-row">
-                        <span className="mdl-layout-title">Build and test</span>
-                        <div className="mdl-layout-spacer"></div>
-                        <span className="mdl-chip mdl-color--green mdl-color-text--white">
-                <span className="mdl-chip__text">Build status</span>
-                <span className="mdl-chip__action"><i className="material-icons">done</i></span>
-            </span>
-                        <div className="mdl-layout-spacer"></div>
-                        <span className="mdl-layout-title"><a className="mdl-color-text--white"
-                                                              href="">slamdev/micro-ci</a></span>
-                        <div className="mdl-layout-spacer"></div>
-                        <div>
-                            <button id="demo-menu-lower-right" className="mdl-button mdl-js-button">
-                    <span className="mdl-layout-title mdl-color-text--white" style={{textTransform: 'none'}}>Slam <i
-                        style={{fontSize: '38px'}}
-                        className="material-icons">account_circle</i></span>
-                            </button>
-                            <ul className="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect"
-                                htmlFor="demo-menu-lower-right">
-                                <li className="mdl-menu__item">Logout</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div className="mdl-layout__tab-bar mdl-js-ripple-effect">
-                        <a href="#fixed-tab-1" className="mdl-layout__tab is-active">Current</a>
-                        <a href="#fixed-tab-2" className="mdl-layout__tab">Branches</a>
-                        <a href="#fixed-tab-3" className="mdl-layout__tab">Build History</a>
-                        <a href="#fixed-tab-4" className="mdl-layout__tab">Pull Requests</a>
-                    </div>
-                </header>
-                <div className="mdl-layout__drawer">
-                    <span className="mdl-layout-title">Jobs</span>
-                    <nav className="mdl-navigation">
-                        <a className="mdl-navigation__link mdl-navigation__link--current" href="#">
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"><i
-                                    className="material-icons mdl-color-text--green">done</i>
-                                </div>
-                                <div className="mdl-cell mdl-cell--8-col">Build and test</div>
-                                <div className="mdl-cell mdl-cell--2-col">
-                        <span className="mdl-chip">
-                            <span className="mdl-chip__text">#4</span>
-                        </span>
-                                </div>
-                            </div>
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"></div>
-                                <div style={{fontSize: '10px', lineHeight: '10px'}}>Duration: 6 min 14 sec</div>
-                            </div>
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"></div>
-                                <div style={{fontSize: '10px', lineHeight: '10px'}}>Finished: 5 days ago</div>
-                            </div>
-                        </a>
-                        <a className="mdl-navigation__link" href="#">
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"><i
-                                    className="material-icons mdl-color-text--red">error_outline</i></div>
-                                <div className="mdl-cell mdl-cell--8-col">Deploy</div>
-                                <div className="mdl-cell mdl-cell--2-col">
-                        <span className="mdl-chip">
-                            <span className="mdl-chip__text">#15</span>
-                        </span>
-                                </div>
-                            </div>
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"></div>
-                                <div style={{fontSize: '10px', lineHeight: '10px'}}>Duration: 1 min 5 sec</div>
-                            </div>
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"></div>
-                                <div style={{fontSize: '10px', lineHeight: '10px'}}>Finished: 7 days ago</div>
-                            </div>
-                        </a>
-                        <a className="mdl-navigation__link" href="#">
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"><i
-                                    className="material-icons mdl-color-text--green">done</i>
-                                </div>
-                                <div className="mdl-cell mdl-cell--8-col">QA Build</div>
-                                <div className="mdl-cell mdl-cell--2-col">
-                        <span className="mdl-chip">
-                            <span className="mdl-chip__text">#1</span>
-                        </span>
-                                </div>
-                            </div>
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"></div>
-                                <div style={{fontSize: '10px', lineHeight: '10px'}}>Duration: 15 min 2 sec</div>
-                            </div>
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"></div>
-                                <div style={{fontSize: '10px', lineHeight: '10px'}}>Finished: 1 day ago</div>
-                            </div>
-                        </a>
-                        <a className="mdl-navigation__link" href="#">
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"><i
-                                    className="material-icons mdl-color-text--red">error_outline</i></div>
-                                <div className="mdl-cell mdl-cell--8-col">Prod Deploy</div>
-                                <div className="mdl-cell mdl-cell--2-col">
-                        <span className="mdl-chip">
-                            <span className="mdl-chip__text">#7</span>
-                        </span>
-                                </div>
-                            </div>
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"></div>
-                                <div style={{fontSize: '10px', lineHeight: '10px'}}>Duration: 3 min 59 sec</div>
-                            </div>
-                            <div className="mdl-grid mdl-grid--no-spacing">
-                                <div className="mdl-cell mdl-cell--2-col"></div>
-                                <div style={{fontSize: '10px', lineHeight: '10px'}}>Finished: 7 days ago</div>
-                            </div>
-                        </a>
-                    </nav>
-                </div>
+                <Header jobName="Build and test" buildStatus="success" repoName="slamdev/micro-ci" currentUser="Slam"/>
+                <Navigation jobs={jobs}/>
                 <main className="mdl-layout__content">
                     <section className="mdl-layout__tab-panel is-active" id="fixed-tab-1">
                         <div className="page-content">
@@ -181,7 +105,8 @@ export default class App extends React.Component {
                                             className="mdl-button mdl-button--icon mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                                         <i className="material-icons" style={{paddingRight: '10px'}}>expand_less</i>
                                     </button>
-                                    <span className="mdl-tooltip mdl-tooltip--large" htmlFor="expand_less">Collapse</span>
+                                    <span className="mdl-tooltip mdl-tooltip--large"
+                                          htmlFor="expand_less">Collapse</span>
                                 </div>
                                 <div style={{padding: '16px', fontSize: '12px'}}
                                      className="mdl-color--blue-grey mdl-color-text--white">
