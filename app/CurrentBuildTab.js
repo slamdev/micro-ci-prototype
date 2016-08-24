@@ -2,10 +2,13 @@ import React from "react/lib/React";
 import ReactPropTypes from "react/lib/ReactPropTypes";
 import BuildInfoCard from "./BuildInfoCard.js";
 
+let getBuildLog = () => ( fetch('/build.log').then(response => response.text()) );
+
 const CurrentBuildTab = (props) => (
     <section className="mdl-layout__tab-panel is-active" id="fixed-tab-1">
         <div className="page-content">
             <BuildInfoCard
+                getBuildLog={getBuildLog}
                 commitMessage="Fix log level in spring boot application and move it"
                 buildDuration="3 min 59 sec"
                 commitId="704dda3"
