@@ -8,7 +8,7 @@ const PullRequestsTab = (props) => (
 );
 
 PullRequestsTab.propTypes = {
-    tabId: ReactPropTypes.string
+    tabId: ReactPropTypes.string.isRequired
 };
 
 export default PullRequestsTab;

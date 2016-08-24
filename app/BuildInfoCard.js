@@ -4,19 +4,21 @@ import ReactPropTypes from "react/lib/ReactPropTypes";
 const BuildInfoCard = (props) => (
     <div className="mdl-card mdl-shadow--8dp" style={{width: '100%'}}>
         <div className="mdl-card__title">
-            <h2 className="mdl-card__title-text">Fix log level in spring boot application and move it</h2>
+            <h2 className="mdl-card__title-text">{props.commitMessage}</h2>
         </div>
         <div className="mdl-card__supporting-text">
             <div className="mdl-grid mdl-grid--no-spacing">
-                <div className="mdl-cell">Duration: 3 min 59 sec</div>
-                <div className="mdl-cell">Commit: <a href="">704dda3</a></div>
-                <div className="mdl-cell">Branch: <a href="">master</a></div>
+                <div className="mdl-cell">Duration: {props.buildDuration}</div>
+                <div className="mdl-cell">Commit: <a href={props.commitUrl}>{props.commitId}</a></div>
+                <div className="mdl-cell">Branch: <a href={props.branchUrl}>{props.branchName}</a></div>
             </div>
             <div className="mdl-grid mdl-grid--no-spacing">
-                <div className="mdl-cell">Finished: 7 days ago</div>
-                <div className="mdl-cell">Compare: <a href="">421a5b1..704dda3</a></div>
-                <div className="mdl-cell">Committed by: <a href="">Slam <i style={{fontSize: '14px'}}
-                                                                           className="material-icons">account_circle</i></a>
+                <div className="mdl-cell">Finished: {props.buildFinishedDate}</div>
+                <div className="mdl-cell">Compare: <a
+                    href={props.prevCommitCompareUrl}>{props.prevCommitId}..{props.commitId}</a></div>
+                <div className="mdl-cell">Committed by: <a href={props.commitOwnerUrl}>{props.commitOwner} <i
+                    style={{fontSize: '14px'}}
+                    className="material-icons">account_circle</i></a>
                 </div>
             </div>
             <div className="mdl-grid mdl-grid--no-spacing" style={{paddingTop: '16px'}}>
@@ -24,7 +26,7 @@ const BuildInfoCard = (props) => (
             </div>
         </div>
         <div className="mdl-card__menu">
-            <span className="mdl-chip"><span className="mdl-chip__text">#7</span></span>
+            <span className="mdl-chip"><span className="mdl-chip__text">#{props.buildNumber}</span></span>
         </div>
         <div className="mdl-card__actions mdl-card--border" style={{display: 'flex'}}>
             <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Restart build</a>
@@ -189,10 +191,18 @@ Total time: 2 mins 52.137 secs
 );
 
 BuildInfoCard.propTypes = {
-    jobName: ReactPropTypes.string,
-    buildStatus: ReactPropTypes.string,
-    repoName: ReactPropTypes.string,
-    currentUser: ReactPropTypes.string
+    commitMessage: ReactPropTypes.string.isRequired,
+    buildDuration: ReactPropTypes.string.isRequired,
+    commitId: ReactPropTypes.string.isRequired,
+    commitUrl: ReactPropTypes.string.isRequired,
+    branchName: ReactPropTypes.string.isRequired,
+    branchUrl: ReactPropTypes.string.isRequired,
+    buildFinishedDate: ReactPropTypes.string.isRequired,
+    prevCommitId: ReactPropTypes.string.isRequired,
+    prevCommitCompareUrl: ReactPropTypes.string.isRequired,
+    commitOwner: ReactPropTypes.string.isRequired,
+    commitOwnerUrl: ReactPropTypes.string.isRequired,
+    buildNumber: ReactPropTypes.number.isRequired
 };
 
 export default BuildInfoCard;

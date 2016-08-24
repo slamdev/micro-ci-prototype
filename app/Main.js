@@ -15,10 +15,7 @@ const Main = (props) => (
 );
 
 Main.propTypes = {
-    jobName: ReactPropTypes.string,
-    buildStatus: ReactPropTypes.string,
-    repoName: ReactPropTypes.string,
-    currentUser: ReactPropTypes.string
+    stub: ReactPropTypes.string
 };
 
 export default Main;

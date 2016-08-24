@@ -38,10 +38,10 @@ const Header = (props) => (
 );
 
 Header.propTypes = {
-    jobName: ReactPropTypes.string,
-    buildStatus: ReactPropTypes.string,
-    repoName: ReactPropTypes.string,
-    currentUser: ReactPropTypes.string
+    jobName: ReactPropTypes.string.isRequired,
+    buildStatus: ReactPropTypes.string.isRequired,
+    repoName: ReactPropTypes.string.isRequired,
+    currentUser: ReactPropTypes.string.isRequired
 };
 
 export default Header;

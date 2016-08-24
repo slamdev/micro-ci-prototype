@@ -8,7 +8,7 @@ const BuildHistoryTab = (props) => (
 );
 
 BuildHistoryTab.propTypes = {
-    tabId: ReactPropTypes.string
+    tabId: ReactPropTypes.string.isRequired
 };
 
 export default BuildHistoryTab;

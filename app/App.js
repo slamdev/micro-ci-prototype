@@ -7,38 +7,38 @@ export default class App extends React.Component {
     render() {
         let jobs = [
             {
-                id: 1,
+                id: "1",
                 active: true,
                 status: 'success',
                 name: 'Build and test',
-                buildNumber: '4',
+                buildNumber: 4,
                 buildDuration: '6 min 14 sec',
                 buildFinished: '5 days ago'
             },
             {
-                id: 2,
+                id: "2",
                 active: false,
                 status: 'failed',
                 name: 'Deploy',
-                buildNumber: '15',
+                buildNumber: 15,
                 buildDuration: '1 min 5 sec',
                 buildFinished: '7 days ago'
             },
             {
-                id: 3,
+                id: "3",
                 active: false,
                 status: 'success',
                 name: 'QA Build',
-                buildNumber: '1',
+                buildNumber: 1,
                 buildDuration: '15 min 2 sec',
                 buildFinished: '1 day ago'
             },
             {
-                id: 4,
+                id: "4",
                 active: false,
                 status: 'failed',
                 name: 'Prod Deploy',
-                buildNumber: '7',
+                buildNumber: 7,
                 buildDuration: '3 min 59 sec',
                 buildFinished: '7 days ago'
             }
