@@ -108,21 +108,21 @@ export default class BuildInfoCard extends ReactComponent {
                             className="mdl-button mdl-button--icon mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                         <i className="material-icons" style={{paddingRight: '10px'}}>info_outline</i>
                     </button>
-                    <span className="mdl-tooltip mdl-tooltip--large" htmlFor="info_outline">Show build config</span>
+                    <span className="mdl-tooltip mdl-tooltip" htmlFor="info_outline">Show build config</span>
                     <a id="open_in_new"
                        href={this.props.buildLogUrl}
                        target="_blank"
                        className="mdl-button mdl-button--icon mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                         <i className="material-icons" style={{paddingRight: '10px'}}>open_in_new</i>
                     </a>
-                    <span className="mdl-tooltip mdl-tooltip--large" htmlFor="open_in_new">See raw logs</span>
+                    <span className="mdl-tooltip mdl-tooltip" htmlFor="open_in_new">See raw logs</span>
                     <button id="expand_less"
                             onClick={this.handleCollapseClick}
                             className="mdl-button mdl-button--icon mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                         <i className="material-icons"
                            style={{paddingRight: '10px'}}>{this.state.buildLogOpened ? 'expand_less' : 'expand_more'}</i>
                     </button>
-                    <span className="mdl-tooltip mdl-tooltip--large"
+                    <span className="mdl-tooltip mdl-tooltip"
                           htmlFor="expand_less">{this.state.buildLogOpened ? 'Collapse' : 'Expand'}</span>
                 </div>
                 <Collapse isOpened={this.state.buildLogOpened} keepCollapsedContent={true}>
