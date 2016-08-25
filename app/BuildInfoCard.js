@@ -2,11 +2,14 @@ import React from "react/lib/React";
 import ReactPropTypes from "react/lib/ReactPropTypes";
 import Collapse from "react-collapse/lib/Collapse";
 import ReactComponent from "react/lib/ReactComponent";
+import BuildConfigDialog from "./BuildConfigDialog";
 
 export default class BuildInfoCard extends ReactComponent {
     static propTypes = {
+        buildConfig: ReactPropTypes.object.isRequired,
         getBuildLog: ReactPropTypes.func.isRequired,
-        open: ReactPropTypes.bool.isRequired,
+        buildLogOpened: ReactPropTypes.bool.isRequired,
+        buildLogUrl: ReactPropTypes.string.isRequired,
         commitMessage: ReactPropTypes.string.isRequired,
         buildDuration: ReactPropTypes.string.isRequired,
         commitId: ReactPropTypes.string.isRequired,
@@ -22,21 +25,22 @@ export default class BuildInfoCard extends ReactComponent {
     };
 
     static defaultProps = {
-        open: true
+        buildLogOpened: false
     };
 
     state = {
-        open: this.props.open,
+        buildInfoOpened: false,
+        buildLogOpened: this.props.buildLogOpened,
         buildLog: ''
     };
 
     constructor(props) {
         super(props);
-        this.updateBuildLog(this.props.open);
+        this.updateBuildLog(this.props.buildLogOpened);
     }
 
-    updateBuildLog(open) {
-        if (open && !this.state.buildLog) {
+    updateBuildLog(opened) {
+        if (opened && !this.state.buildLog) {
             this.props.getBuildLog().then(
                 log => this.setState({buildLog: log})
             );
@@ -44,10 +48,17 @@ export default class BuildInfoCard extends ReactComponent {
     };
 
     handleCollapseClick = (e) => {
+        let opened = !this.state.buildLogOpened;
         this.setState({
-            open: !this.state.open,
+            buildLogOpened: opened,
         });
-        this.updateBuildLog(!this.state.open);
+        this.updateBuildLog(opened);
+    };
+
+    handleBuildInfoClick = (e) => {
+        this.setState({
+            buildInfoOpened: true
+        });
     };
 
     render() {
@@ -87,30 +98,34 @@ export default class BuildInfoCard extends ReactComponent {
                     <a className="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">Delete build</a>
                     <div className="mdl-layout-spacer"></div>
                     <button id="info_outline"
+                            onClick={this.handleBuildInfoClick}
                             className="mdl-button mdl-button--icon mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                         <i className="material-icons" style={{paddingRight: '10px'}}>info_outline</i>
                     </button>
                     <span className="mdl-tooltip mdl-tooltip--large" htmlFor="info_outline">Show build config</span>
-                    <button id="open_in_new"
-                            className="mdl-button mdl-button--icon mdl-button--colored mdl-js-button mdl-js-ripple-effect">
+                    <a id="open_in_new"
+                       href={this.props.buildLogUrl}
+                       target="_blank"
+                       className="mdl-button mdl-button--icon mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                         <i className="material-icons" style={{paddingRight: '10px'}}>open_in_new</i>
-                    </button>
+                    </a>
                     <span className="mdl-tooltip mdl-tooltip--large" htmlFor="open_in_new">See raw logs</span>
                     <button id="expand_less"
                             onClick={this.handleCollapseClick}
                             className="mdl-button mdl-button--icon mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                         <i className="material-icons"
-                           style={{paddingRight: '10px'}}>{this.state.open ? 'expand_less' : 'expand_more'}</i>
+                           style={{paddingRight: '10px'}}>{this.state.buildLogOpened ? 'expand_less' : 'expand_more'}</i>
                     </button>
                     <span className="mdl-tooltip mdl-tooltip--large"
-                          htmlFor="expand_less">{this.state.open ? 'Collapse' : 'Expand'}</span>
+                          htmlFor="expand_less">{this.state.buildLogOpened ? 'Collapse' : 'Expand'}</span>
                 </div>
-                <Collapse isOpened={this.state.open} keepCollapsedContent={true}>
+                <Collapse isOpened={this.state.buildLogOpened} keepCollapsedContent={true}>
                     <div style={{padding: '16px', fontSize: '12px'}}
                          className="mdl-color--blue-grey mdl-color-text--white">
                         <pre>{this.state.buildLog}</pre>
                     </div>
                 </Collapse>
+                <BuildConfigDialog opened={this.state.buildInfoOpened} buildConfig={this.props.buildConfig}/>
             </div>
         );
     }

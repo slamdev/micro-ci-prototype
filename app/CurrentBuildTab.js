@@ -8,6 +8,9 @@ const CurrentBuildTab = (props) => (
     <section className="mdl-layout__tab-panel is-active" id="fixed-tab-1">
         <div className="page-content">
             <BuildInfoCard
+                buildConfig={{some: 'config', else: 'props'}}
+                buildLogOpened={true}
+                buildLogUrl="http://example.com"
                 getBuildLog={getBuildLog}
                 commitMessage="Fix log level in spring boot application and move it"
                 buildDuration="3 min 59 sec"
