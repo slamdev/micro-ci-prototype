@@ -61,6 +61,12 @@ export default class BuildInfoCard extends ReactComponent {
         });
     };
 
+    handleBuildInfoCloseClick = () => (
+        this.setState({
+            buildInfoOpened: false
+        })
+    );
+
     render() {
         return (
             <div className="mdl-card mdl-shadow--8dp" style={{width: '100%'}}>
@@ -125,7 +131,8 @@ export default class BuildInfoCard extends ReactComponent {
                         <pre>{this.state.buildLog}</pre>
                     </div>
                 </Collapse>
-                <BuildConfigDialog opened={this.state.buildInfoOpened} buildConfig={this.props.buildConfig}/>
+                <BuildConfigDialog opened={this.state.buildInfoOpened} buildConfig={this.props.buildConfig}
+                                   handleCloseClick={this.handleBuildInfoCloseClick}/>
             </div>
         );
     }

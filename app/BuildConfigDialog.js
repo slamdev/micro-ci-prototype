@@ -6,11 +6,14 @@ import JsonPrinter from "./JsonPrinter";
 export default class BuildConfigDialog extends ReactComponent {
     static propTypes = {
         opened: ReactPropTypes.bool.isRequired,
-        buildConfig: ReactPropTypes.object.isRequired
+        buildConfig: ReactPropTypes.object.isRequired,
+        handleCloseClick: ReactPropTypes.func.isRequired
     };
 
     static defaultProps = {
-        opened: false
+        opened: false,
+        handleCloseClick: () => {
+        }
     };
 
     state = {
@@ -21,6 +24,7 @@ export default class BuildConfigDialog extends ReactComponent {
 
     componentDidMount() {
         this.dialog = document.querySelector('dialog');
+        this.dialog.addEventListener('close', this.props.handleCloseClick)
     }
 
     componentWillReceiveProps(nextProps) {

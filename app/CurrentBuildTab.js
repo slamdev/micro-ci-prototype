@@ -2,35 +2,17 @@ import React from "react/lib/React";
 import ReactPropTypes from "react/lib/ReactPropTypes";
 import BuildInfoCard from "./BuildInfoCard.js";
 
-let getBuildLog = () => ( fetch('/build.log').then(response => response.text()) );
-
 const CurrentBuildTab = (props) => (
-    <section className="mdl-layout__tab-panel is-active" id="fixed-tab-1">
+    <section className="mdl-layout__tab-panel is-active" id={props.tabId}>
         <div className="page-content">
-            <BuildInfoCard
-                buildConfig={{some: 'config', else: 'props'}}
-                buildLogOpened={true}
-                buildLogUrl="http://example.com"
-                getBuildLog={getBuildLog}
-                commitMessage="Fix log level in spring boot application and move it"
-                buildDuration="3 min 59 sec"
-                commitId="704dda3"
-                commitUrl="#"
-                branchName="master"
-                branchUrl="#"
-                buildFinishedDate="7 days ago"
-                prevCommitId="421a5b1"
-                prevCommitCompareUrl="#"
-                commitOwner="Slam"
-                commitOwnerUrl="#"
-                buildNumber={4}
-            />
+            <BuildInfoCard buildLogOpened={true} {...props.currentBuild}/>
         </div>
     </section>
 );
 
 CurrentBuildTab.propTypes = {
-    stub: ReactPropTypes.string
+    tabId: ReactPropTypes.string.isRequired,
+    currentBuild: ReactPropTypes.object.isRequired
 };
 
 export default CurrentBuildTab;

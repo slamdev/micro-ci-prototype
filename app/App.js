@@ -43,12 +43,38 @@ export default class App extends React.Component {
                 buildFinished: '7 days ago'
             }
         ];
+
+        let currentBuild = {
+            buildConfig: {some: 'config', else: 'props'},
+            buildLogUrl: "http://example.com",
+            getBuildLog: () => ( fetch('/build.log').then(response => response.text()) ),
+            commitMessage: "Fix log level in spring boot application and move it",
+            buildDuration: "3 min 59 sec",
+            commitId: "704dda3",
+            commitUrl: "#",
+            branchName: "master",
+            branchUrl: "#",
+            buildFinishedDate: "7 days ago",
+            prevCommitId: "421a5b1",
+            prevCommitCompareUrl: "#",
+            commitOwner: "Slam",
+            commitOwnerUrl: "#",
+            buildNumber: 4
+        };
+
+        let currentBuildHeader = {
+            jobName: "Build and test",
+            buildStatus: "success",
+            repoName: "slamdev/micro-ci",
+            currentUser: "Slam"
+        };
+
         return (
             <div
                 className="mdl-layout mdl-js-layout mdl-layout--fixed-header mdl-layout--fixed-tabs mdl-layout--fixed-drawer">
-                <Header jobName="Build and test" buildStatus="success" repoName="slamdev/micro-ci" currentUser="Slam"/>
+                <Header {...currentBuildHeader}/>
                 <Navigation jobs={jobs}/>
-                <Main/>
+                <Main currentBuild={currentBuild}/>
             </div>
         );
     };
